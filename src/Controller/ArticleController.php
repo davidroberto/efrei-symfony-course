@@ -2,16 +2,36 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArticleController
+class ArticleController extends AbstractController
 {
 
     #[Route('/articles')]
     public function renderListArticlesPage() {
-        return new Response('<h1>Liste des articles</h1>', 200);
 
+        // récupère mes articles en BDD
+        $articlesFromDB = [
+            1 => [
+                'id' => 1,
+                'title' => 'Article 1',
+                'content' => 'Content Article 1',
+            ],
+            2 => [
+                'id' => 2,
+                'title' => 'Article 2',
+                'content' => 'Content Article 2',
+            ],
+            3 => [
+                'id' => 3,
+                'title' => 'Article 3',
+                'content' => 'Content Article 3',
+            ]
+        ];
+
+        return $this->render("listArticles.html.twig");
     }
 
     // je place dans la route un parametre variable

@@ -1,13 +1,18 @@
-{% include "partials/_header.html.twig" %}
+{% extends 'base.html.twig' %}
 
-<h1>Liste des articles</h1>
+{% block main %}
+
+    {% if %}
+
+    <h1>Liste des articles</h1>
 
 
-{% for article in articles %}
+    {% for article in articles %}
 
-    <h2>{{ article.title }}</h2>
-    <a href="{{ path('single_article', {'id' : article.id }) }}">Voir l'article complet</a>
+        <h2>{{ article.title }}</h2>
+        <a href="{{ path('single_article', {'id' : article.id }) }}">Voir l'article complet</a>
 
-{% endfor %}
+    {% endfor %}
+{% endblock main %}
 
-{% include "partials/_footer.html.twig" %}
+

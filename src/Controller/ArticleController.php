@@ -31,7 +31,9 @@ class ArticleController extends AbstractController
             ]
         ];
 
-        return $this->render("listArticles.html.twig");
+        return $this->render("listArticles.html.twig", [
+            'articles' => $articlesFromDB,
+        ]);
     }
 
     // je place dans la route un parametre variable

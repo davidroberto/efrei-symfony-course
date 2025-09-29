@@ -25,9 +25,7 @@ class CategoriesController extends AbstractController
                 'title' => 'Catégorie 3',
             ],
         ];
-
-        $test = false;
-
+        
         return $this->render('listCategories.html.twig', [
             'categories' => $categories,
         ]);

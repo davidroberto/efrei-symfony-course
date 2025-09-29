@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 // (réponse avec du twig, redirection facile etc)
 class HomeController extends AbstractController
 {
-    #[Route('/')]
+    #[Route('/', name: 'home')]
     public function renderHomePage() {
 
         // j'utilise la méthode render pour récupérer le contenu du fichier twig

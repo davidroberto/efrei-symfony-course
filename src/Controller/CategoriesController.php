@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoriesController extends AbstractController
 {
 
-    #[Route('/categories')]
+    #[Route('/categories', name: 'list_categories')]
     public function renderListCategoriesPage() {
 
         $categories = [
@@ -25,7 +25,7 @@ class CategoriesController extends AbstractController
                 'title' => 'Catégorie 3',
             ],
         ];
-        
+
         return $this->render('listCategories.html.twig', [
             'categories' => $categories,
         ]);

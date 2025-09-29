@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController
 {
 
-    #[Route('/articles')]
+    #[Route('/list-articles', name: 'list_articles')]
     public function renderListArticlesPage() {
 
         // récupère mes articles en BDD
@@ -39,15 +39,8 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    // je place dans la route un parametre variable
-    // c'est à dire qui peut être n'importe quelle valeur
-    // ici je le nomme id
-    #[Route('/articles/{id}')]
-    // je demande à symfony de récupérer automatiquement
-    // la valeur du paramete id dans l'url
-    // et de le stocker dans la variable $id
-    // donc si l'url demandée est /articles/213
-    // alors $id sera égal à 213
+
+    #[Route('/articles/{id}', name: 'single_article')]
     public function renderSingleArticlePage($id) {
 
         // simulation de requête de BDD

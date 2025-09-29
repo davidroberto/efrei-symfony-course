@@ -18,16 +18,19 @@ class ArticleController extends AbstractController
                 'id' => 1,
                 'title' => 'Article 1',
                 'content' => 'Content Article 1',
+                'is_published' => true,
             ],
             2 => [
                 'id' => 2,
                 'title' => 'Article 2',
                 'content' => 'Content Article 2',
+                'is_published' => false,
             ],
             3 => [
                 'id' => 3,
                 'title' => 'Article 3',
                 'content' => 'Content Article 3',
+                'is_published' => true,
             ]
         ];
 
@@ -66,7 +69,9 @@ class ArticleController extends AbstractController
             ]
         ];
 
-        // gestion de l'erreur ?
+        if (!array_key_exists($id, $articlesFromDB)) {
+            return new Response('Article non trouvé', Response::HTTP_NOT_FOUND);
+        }
 
         $article = $articlesFromDB[$id];
 

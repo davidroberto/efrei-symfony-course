@@ -66,11 +66,14 @@ class ArticleController extends AbstractController
             ]
         ];
 
-        // je récupère le titre de l'article dont l'id correspond à celui qui est dans l'url
-        $articleTitle = $articlesFromDB[$id]['title'];
+        // gestion de l'erreur ?
 
+        $article = $articlesFromDB[$id];
 
-        return new Response("<h1> $articleTitle </h1>", 200);
+        return $this->render("singleArticle.html.twig", [
+            'article' => $article,
+        ]);
+
     }
 
 }

@@ -26,8 +26,11 @@ class CategoriesController extends AbstractController
             ],
         ];
 
+        $test = false;
 
-        return $this->render('listCategories.html.twig');
+        return $this->render('listCategories.html.twig', [
+            'categories' => $categories,
+        ]);
 
     }
 

@@ -76,11 +76,14 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/create-article', name: 'create_article')]
+    // je demande à symfony d'instancier la classe
+    // Request
+    // cette classe de Symfony, contient des méthodes utilitaires
+    // pour gérer la requête
     public function renderCreateArticlePage(Request $request) {
 
-        // Récupérer les données envoyées en POST
-        // si y'en a
 
+        // je vérifie si la requête est du POST
         if ($request->isMethod('POST')) {
             dump('form envoyé'); die;
         }

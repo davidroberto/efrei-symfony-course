@@ -2,6 +2,13 @@
 
 {% block main %}
 
+
+    {% if title %}
+
+        <h3>L'article "{{ title }}" a bien été créé ! </h3>
+
+    {% endif %}
+
     <h1>Créer un article</h1>
 
     <form method="post">

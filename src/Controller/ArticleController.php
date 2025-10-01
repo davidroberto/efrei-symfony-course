@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
+use Doctrine\ORM\EntityManagerInterface;
+use PDO;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -76,20 +79,25 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/create-article', name: 'create_article')]
-    // je demande à symfony d'instancier la classe
-    // Request
-    // cette classe de Symfony, contient des méthodes utilitaires
-    // pour gérer la requête
-    public function renderCreateArticlePage(Request $request) {
+    public function renderCreateArticlePage(Request $request, EntityManagerInterface $entityManager) {
 
+        $title = null;
 
-        // je vérifie si la requête est du POST
         if ($request->isMethod('POST')) {
-            dump('form envoyé'); die;
+            $title = $request->request->get('title');
+            $content = $request->request->get('content');
+
+            $article = new Article();
+            $article->setTitle($title);
+            $article->setContent($content);
+
+            $entityManager->persist($article);
+            $entityManager->flush();
         }
 
-
-        return $this->render("createArticle.html.twig");
+        return $this->render("createArticle.html.twig", [
+            'title' => $title,
+        ]);
     }
 
 }

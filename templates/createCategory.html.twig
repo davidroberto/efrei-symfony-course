@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    {% if title %}
+
+        <h3>La catégorie "{{ title }}" a bien été créée !</h3>
+    {% endif %}
+
+    <h1>Créer une catégorie</h1>
+
+    <form method="post">
+
+        <label>Title
+            <input type="text" name="title"/>
+        </label>
+
+
+        <button type="submit">Créer</button>
+
+    </form>
+{% endblock %}
+

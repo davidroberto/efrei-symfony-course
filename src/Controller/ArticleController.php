@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use PDO;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,29 +15,9 @@ class ArticleController extends AbstractController
 {
 
     #[Route('/list-articles', name: 'list_articles')]
-    public function renderListArticlesPage() {
+    public function renderListArticlesPage(ArticleRepository $articleRepository): Response {
 
-        // récupère mes articles en BDD
-        $articlesFromDB = [
-            1 => [
-                'id' => 1,
-                'title' => 'Article 1',
-                'content' => 'Content Article 1',
-                'is_published' => true,
-            ],
-            2 => [
-                'id' => 2,
-                'title' => 'Article 2',
-                'content' => 'Content Article 2',
-                'is_published' => false,
-            ],
-            3 => [
-                'id' => 3,
-                'title' => 'Article 3',
-                'content' => 'Content Article 3',
-                'is_published' => true,
-            ]
-        ];
+        $articlesFromDB = $articleRepository->findAll();
 
         return $this->render("listArticles.html.twig", [
             'articles' => $articlesFromDB,

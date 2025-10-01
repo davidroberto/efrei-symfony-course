@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -72,6 +73,20 @@ class ArticleController extends AbstractController
             'article' => $article,
         ]);
 
+    }
+
+    #[Route('/create-article', name: 'create_article')]
+    public function renderCreateArticlePage(Request $request) {
+
+        // Récupérer les données envoyées en POST
+        // si y'en a
+
+        if ($request->isMethod('POST')) {
+            dump('form envoyé'); die;
+        }
+
+
+        return $this->render("createArticle.html.twig");
     }
 
 }
